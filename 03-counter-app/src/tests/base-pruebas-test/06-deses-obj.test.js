@@ -1,4 +1,5 @@
-import { usContext } from "../../src/base-pruebas/06-deses-obj";
+import { usContext } from '../../base-pruebas/06-deses-obj';
+
 
 
 describe('Testing 06-deses-obj', () => {

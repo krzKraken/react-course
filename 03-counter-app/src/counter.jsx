@@ -11,8 +11,10 @@ const CounterApp = ({ valor }) => {
   };
 
   const oneLess = () => {
-    setCounter(counter - 1);
-    console.log("oneLess called");
+    if (counter > 0) {
+      setCounter(counter - 1);
+      console.log("oneLess called");
+    }
   };
 
   const resetCounter = () => {

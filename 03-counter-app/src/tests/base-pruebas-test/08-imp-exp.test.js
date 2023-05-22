@@ -1,4 +1,4 @@
-const { getHeroeById, getHeroesByOwner } = require("../../src/base-pruebas/08-imp-exp");
+import { getHeroeById, getHeroesByOwner } from '../../base-pruebas/08-imp-exp';
 
 
 describe('testing 08-imp-exp', () => {
