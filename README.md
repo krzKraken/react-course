@@ -150,3 +150,12 @@ module.exports = {
 
 8. **Change the babel.config.js and jest.config.mjs** to _.cjs_ <-
 
+9. Solving troubles for jest in test fetch api
+
+cretate 2 files in the root directory
+- jest.config.js
+- jest.setup.js
+
+install the package
+- yarn add -D wahtwg-fetch
+- 

@@ -3,4 +3,5 @@ export function getSaludo(nombre) {
 }
 
 const nombre = 'Pedro'
-console.log(getSaludo(nombre));
+console.log(getSaludo(nombre))
+
