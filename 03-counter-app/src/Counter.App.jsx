@@ -1,3 +1,6 @@
+/**  */
+
+
 import { useState } from "react";
 
 import PropTypes from "prop-types";
@@ -25,11 +28,11 @@ const CounterApp = ({ valor }) => {
   return (
     <>
       <h1>Contador</h1>
-      <p>Numero: {counter} </p>
+      <h2>{counter} </h2>
       <div>
         <button onClick={oneMore}>1+</button>
         <button onClick={oneLess}>1-</button>
-        <button onClick={resetCounter}>reset</button>
+        <button aria-label="btn-reset" onClick={resetCounter}>Reset</button>
       </div>
     </>
   );

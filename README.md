@@ -23,6 +23,7 @@ yarn dev => Run application
 ## Change npm to yarn
 
 - delete package-lock.json from npm folder and
+  b
 
 ```
 yarn install
@@ -153,9 +154,117 @@ module.exports = {
 9. Solving troubles for jest in test fetch api
 
 cretate 2 files in the root directory
+
 - jest.config.js
 - jest.setup.js
 
 install the package
+
 - yarn add -D wahtwg-fetch
-- 
+
+# Testing in react components
+
+Testing Library (React components test library)
+
+- https://testing-library.com/
+
+  Jest (unit test for js)
+
+- https://jestjs.io/
+
+## Testing with testing-Library
+
+install the dependencies
+
+```
+yarn add --dev @testing-library/react
+```
+
+then you should import the test library in the testfile ___MyFirstApp.test.jsx___
+
+```
+const { render } = require("@testing-library/react");
+const { MyFirstApp } = require("../src/myFirstApp");
+
+describe("Testing <FirstApp/>", () => {
+  test("This should match with the snapshot", () => {
+    render(<MyFirstApp />);
+  });
+});
+
+```
+
+_note: you should update the jest.config.js update with this_
+_note: Important to know maybe you need to change the extension name __.js__ to __.cjs___
+
+jest.config.js
+```
+module.exports = {
+
+  testEnviroment: 'jest-environment-jsdom',
+  setupFiles: ['./jest.setup.js']
+
+}
+```
+
+jest.setup.js
+```
+
+import 'whatwg-fetch';
+```
+
+babel.config.cdjs
+```
+module.exports = {
+
+  // add babel preset-env and preset-react
+  presets: [
+    ['@babel/preset-env', {
+      targets: {
+        esmodules: true,
+      }
+    }],
+    ['@babel/preset-react', {
+      runtime: 'automatic',
+    },]
+  ]
+};
+
+```
+
+And don't forget to add the dependencies with
+- yarn add -D jest-environment-jsdom
+- yarn add -D @babel/preset-react
+- yarn add -D @babel/preset-env
+
+## __IMPORTANT__
+if you have this problem when you are running the test, you should add this line to the component file
+_file.test.jsx_
+```
+/** @jest-environment jsdom */
+```
+
+
+# Snapshot
+When you run the test with .matchWithSnapshot(); this will create a snapshot in the testfolder named __snapshot__ and if the component changes, the test will fail because it was expecting a snapshot.
+
+```
+/** @jest-environment jsdom */
+
+import { render } from "@testing-library/react";
+
+const { MyFirstApp } = require("../src/myFirstApp");
+
+describe("Testing <MyFirstApp/>", () => {
+
+  test("This should match with the snapshot", () => {
+
+    const titulo = "hola soy goku";
+    const { container } = render(<MyFirstApp title={titulo} />);
+    expect(container).toMatchSnapshot();
+  });
+});
+```
+
+note: You can update the snapshot pressing the u key if you need it
+

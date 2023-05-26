@@ -1,4 +1,4 @@
-import { getSaludo } from '../../base-pruebas/02-template-string'
+import { getSaludo } from '../../src/base-pruebas/02-template-string'
 
 describe('Pruebas en GetSaludo 02-template-string', () => {
 
