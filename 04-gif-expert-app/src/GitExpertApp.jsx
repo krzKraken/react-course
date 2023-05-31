@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { AddCategory } from "./components/AddCategory";
-import { SearchGift } from "./components/SearchGift";
+import { GitGrip } from "./components/GitGrip";
+
 export const GitExpertApp = () => {
-    const [categories, setCategories] = useState(['category 1', 'category 2', 'category 3']);
+    const [categories, setCategories] = useState(['category 1']);
     console.log(categories);
 
-    const addCategory = () => {
-        setCategories([...categories, 'AddCategory']);
+    const addCategory = (newCategory) => {
+        if (categories.includes(newCategory)) return;
+        console.log(newCategory);
+        setCategories([newCategory, ...categories]);
 
     }
     const removeCategory = () => {
@@ -17,17 +20,19 @@ export const GitExpertApp = () => {
             {/* Title */}
             <h1>GitExpertApp</h1>
             {/* input */}
-            < AddCategory setCategories={setCategories} />
+            < AddCategory
+                // setCategories={setCategories}
+                onNewCategory={(event) => addCategory(event)}
+            />
 
-            < SearchGift />
             {/* List of categories */}
-            <ol>
-                {categories.map(category => {
-                    return <li key={category}>
-                        {category}
-                    </li>
-                })}
-            </ol>
+            {categories.map(category => (
+                <GitGrip
+                    key={category}
+                    category={category}
+                />
+            )
+            )}
 
         </>
     )

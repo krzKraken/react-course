@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 
-export const AddCategory = (setCategories) => {
+export const AddCategory = ({ onNewCategory }) => {
 
     const [inputValue, setInputValue] = useState("");
 
@@ -11,23 +11,24 @@ export const AddCategory = (setCategories) => {
         setInputValue(event.target.value);
     }
 
-    const updateCategory = () => {
-        setCategories([...categories, inputValue]);
-    }
-
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log(inputValue);
-        updateCategory();
+        if (inputValue.trim().length <= 0) return;
+        onNewCategory(inputValue.trim());
+        setInputValue("");
     }
     return (
-        <form onSubmit={(e) => onSubmit(e)}>
-            <input
-                type="text"
-                placeholder="Search gift"
-                value={inputValue}
-                onChange={(e) => onInputChange(e)}
-            />
-        </form>
+        <div className="block">
+            <form onSubmit={(e) => onSubmit(e)}>
+
+                <h1>Add category</h1>
+                <input
+                    type="text"
+                    placeholder="Search gift"
+                    value={inputValue}
+                    onChange={(e) => onInputChange(e)}
+                />
+            </form>
+        </div>
     )
 }
